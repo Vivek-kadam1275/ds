@@ -1,0 +1,20 @@
+1. take n number or nodes: there should be circular representation of nodes. 0 1 2 3 4 0
+
+2. print circular representation of nodes.
+
+3. take sender input:2
+   take reciever input :0
+   take sendingData input 
+
+4. place token at 0th node (i.e token=0);
+
+    
+5. show that token is getting passed from 0 to sender
+  o/p token-passing: 0->1->2
+  set token=2
+
+6. Now print data is forwarded from 2 ,from 3,from 4
+
+7. print finally data is received by 0
+									
+8. you can place 3 to 7 steps , in do while so repeat this process multiple times by entering choice. 
