@@ -1,0 +1,66 @@
+import java.util.*;
+
+public class BerkeleyAlgorithm {
+
+    // Number of processes (including master)
+    static final int numProcesses = 5;
+
+    public static void main(String[] args) {
+
+        // Simulated clock times for all processes
+        // Index 0 is the master (coordinator)
+        int[] clocks = { 100, 102, 98, 105, 101 };  // Example times (in seconds)
+
+        System.out.println("Initial Clocks:");
+        for (int i = 0; i < numProcesses; i++) {
+            System.out.println("Process " + i + " Clock: " + clocks[i]);
+        }
+
+        // Simulate master process (index 0) polling others
+        int masterClock = clocks[0];
+
+        // Store offsets (time difference from master)
+        int[] offsets = new int[numProcesses];
+
+        // Step 1: Calculate offsets of each process compared to master
+        for (int i = 0; i < numProcesses; i++) {
+            offsets[i] = clocks[i] - masterClock;
+        }
+
+        // Step 2: Calculate average offset (excluding extreme values if needed)
+        int totalOffset = 0;
+        for (int i = 0; i < numProcesses; i++) {
+            totalOffset += offsets[i];
+        }
+
+        int avgOffset = totalOffset / numProcesses;
+
+        System.out.println("\nCalculated Offsets:");
+        for (int i = 0; i < numProcesses; i++) {
+            System.out.println("Offset of Process " + i + ": " + offsets[i]);
+        }
+
+        System.out.println("\nAverage Offset: " + avgOffset);
+
+        // Step 3: Calculate individual adjustments
+        int[] adjustments = new int[numProcesses];
+        for (int i = 0; i < numProcesses; i++) {
+            adjustments[i] = avgOffset - offsets[i];  // New = old + adjustment
+        }
+
+        System.out.println("\nAdjustments to be applied:");
+        for (int i = 0; i < numProcesses; i++) {
+            System.out.println("Process " + i + ": " + adjustments[i]);
+        }
+
+        // Step 4: Apply adjustments to update clocks
+        for (int i = 0; i < numProcesses; i++) {
+            clocks[i] += adjustments[i];
+        }
+
+        System.out.println("\nSynchronized Clocks:");
+        for (int i = 0; i < numProcesses; i++) {
+            System.out.println("Process " + i + " Clock: " + clocks[i]);
+        }
+    }
+}
