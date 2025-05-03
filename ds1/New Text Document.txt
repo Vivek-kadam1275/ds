@@ -1,9 +1,0 @@
-multithreading: multiple clients should do concurrently and also multiple methods should run concurrently.
-
-rmi supports both by default. We do not need to create a separate threads to do so right.
-
-for multiple clients, we just need to run multiple clients and check a different threadname for each client.
-
-and for multiple methods to invoke, as we were running methods sequentially so single thread was calling all methods of that client. So we need to use Thread so we can call methods concurrently and check whether multiple threads come into existence to implement that method
-
-This is all i understood about the assignment.
