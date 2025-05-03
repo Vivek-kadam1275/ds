@@ -1,0 +1,58 @@
+To run your MPI-based Java program on Ubuntu, follow these steps carefully:
+
+✅ Step-by-Step Guide to Compile and Run Java MPI Program on Ubuntu
+1. Install MPI (OpenMPI)
+bash
+Copy
+Edit
+sudo apt update
+sudo apt install openmpi-bin libopenmpi-dev
+
+2. Install MPJ Express (Java MPI Library)
+Java doesn't use C-based MPI directly. For Java, we use MPJ Express.
+
+🔹 Download MPJ Express:
+bash
+Copy
+Edit
+wget https://sourceforge.net/projects/mpjexpress/files/latest/download -O mpjexpress.zip
+unzip mpjexpress.zip
+mv mpj-v* mpjexpress
+
+🔹 Set Environment Variables (temporary or permanent)
+bash
+Copy
+Edit
+export MPJ_HOME=$HOME/mpjexpress
+export PATH=$PATH:$MPJ_HOME/bin
+
+To make this permanent, add the above lines to your .bashrc:
+
+bash
+Copy
+Edit
+nano ~/.bashrc
+# Add:
+export MPJ_HOME=$HOME/mpjexpress
+export PATH=$PATH:$MPJ_HOME/bin
+# Save and then:
+source ~/.bashrc
+
+3. Compile Your Java Code
+Assuming your Java file is named ArraySum.java and is in your current directory:
+
+bash
+Copy
+Edit
+javac -cp $MPJ_HOME/lib/mpj.jar ArraySum.java
+
+4. Run the Program Using MPJ Express (in multicore mode)
+bash
+Copy
+Edit
+mpjrun.sh -np 4 ArraySum
+📌 Here:
+
+-np 4 runs it with 4 processes.
+
+ArraySum is the class name with main() meth
