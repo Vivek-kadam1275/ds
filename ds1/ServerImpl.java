@@ -4,7 +4,7 @@ import java.rmi.server.*;// It consists UnicastRemoteObject: which used to defin
 public class ServerImpl extends UnicastRemoteObject implements ServerInterf  {
 
     public ServerImpl() throws RemoteException{
-        super();
+        super(); // call the UnicastRemoteObject constructor
     }
     public double addition(double a,double b) throws RemoteException{
         System.out.println("Addition request handled by: " + Thread.currentThread().getName());
